@@ -1,0 +1,16 @@
+[
+  {
+    "name": "The Company of Weavers",
+    "cheapestBeerName": "Ruddles",
+    "cheapestBeerPrice": 189,
+    "latitude": 51.7836036682129,
+    "longitude": -1.48490798473358
+  },
+  {
+    "name": "The Four Candles",
+    "cheapestBeerName": "Thornbridge Versa Weisse Beer",
+    "cheapestBeerPrice": 199,
+    "latitude" : 51.7534446716309,
+    "longitude" : -1.26211404800415
+  }
+]
