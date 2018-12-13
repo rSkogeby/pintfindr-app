@@ -1,15 +1,17 @@
 [
   {
-    "name": "The Company of Weavers",
+    "id": "7c5eadc0-bb7f-4537-abfe-037856d599bd",
+    "venueName": "The Company of Weavers",
     "cheapestBeerName": "Ruddles",
     "cheapestBeerPrice": 189,
     "latitude": 51.7836036682129,
     "longitude": -1.48490798473358
   },
   {
-    "name": "The Four Candles",
-    "cheapestBeerName": "Thornbridge Versa Weisse Beer",
-    "cheapestBeerPrice": 199,
+    "id": "dd4a2801-5e99-4da9-8750-b7f01d51aff5",
+    "venueName": "The Four Candles",
+    "cheapestBeerName": "Green King IPA",
+    "cheapestBeerPrice": 215,
     "latitude" : 51.7534446716309,
     "longitude" : -1.26211404800415
   }
