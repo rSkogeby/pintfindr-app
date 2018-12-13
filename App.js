@@ -61,10 +61,8 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      heading: 0,
-      closestLocation: null,
-      pintHeading: null,
-      pintDistance: null,
+      userHeading: 0,
+      userLocation: null,
       visitedVenuesIds: [],
     }
   }
@@ -73,30 +71,24 @@ export default class App extends Component {
     ReactNativeHeading.start(1)
 
     DeviceEventEmitter.addListener('headingUpdated', (data) => {
-      this.setState({ heading: data.heading })
+      this.setState({ userHeading: data.heading })
     })
 
     navigator.geolocation.watchPosition((position) => {
-      const closestLocation = getClosestPint(position.coords, this.state.visitedVenuesIds)
-      const heading = geolib.getRhumbLineBearing(position.coords, closestLocation)
-      const distance = geolib.getDistanceSimple(position.coords, closestLocation)
-
-      this.setState({ closestLocation, pintHeading: heading, pintDistance: distance })
+      this.setState({ userLocation: position.coords })
     })
   }
 
   userDidDrinkPint = () => {
-    console.log('The user has had a pint!')
-
-    this.setState({
-      visitedVenuesIds: [...this.state.visitedVenuesIds, this.state.closestLocation.id]
-    })
+    const { userLocation, visitedVenuesIds } = this.state
+    const closestLocation = getClosestPint(userLocation, visitedVenuesIds)
+    this.setState({ visitedVenuesIds: [...visitedVenuesIds, closestLocation.id] })
   }
 
   render () {
-    const { heading, closestLocation, pintHeading, pintDistance } = this.state
+    const { userHeading, userLocation, visitedVenuesIds } = this.state
 
-    if (!closestLocation) {
+    if (!userHeading || !userLocation) {
       return (
         <SafeAreaView style={styles.container}>
           <Spacer height={20} />
@@ -105,10 +97,14 @@ export default class App extends Component {
       )
     }
 
+    const closestLocation = getClosestPint(userLocation, visitedVenuesIds)
+    const pintHeading = geolib.getRhumbLineBearing(userLocation, closestLocation)
+    const pintDistance = geolib.getDistanceSimple(userLocation, closestLocation)
+
     return (
       <SafeAreaView style={styles.container}>
         <Spacer height={20} />
-        <Compass heading={heading} targetHeading={pintHeading} />
+        <Compass heading={userHeading} targetHeading={pintHeading} />
         <Spacer height={20} />
 
         {pintDistance > 25 ? <>
