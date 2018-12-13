@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Button, Platform, SafeAreaView, StyleSheet, DeviceEventEmitter, Text, View, Image} from 'react-native'
+import {ActivityIndicator, Button, Platform, PermissionsAndroid, SafeAreaView, StyleSheet, DeviceEventEmitter, Text, View, Image} from 'react-native'
 import ReactNativeHeading from 'react-native-heading'
 import geolib from 'geolib'
 import Spacer from 'react-spacer'
@@ -67,7 +67,11 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount () {
+  async componentDidMount () {
+    if (Platform.OS === 'android') {
+      await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+    }
+
     ReactNativeHeading.start(1)
 
     DeviceEventEmitter.addListener('headingUpdated', (data) => {
