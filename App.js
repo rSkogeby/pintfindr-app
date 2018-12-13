@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Button, Platform, PermissionsAndroid, SafeAreaView, StyleSheet, DeviceEventEmitter, Text, View, Image} from 'react-native'
+import {AsyncStorage, Alert, ActivityIndicator, Button, Platform, PermissionsAndroid, SafeAreaView, StyleSheet, DeviceEventEmitter, Text, View, Image} from 'react-native'
 import ReactNativeHeading from 'react-native-heading'
 import geolib from 'geolib'
 import Spacer from 'react-spacer'
+import FannyPack from '@fanny-pack/react-native'
 
 import Compass from './components/compass'
 
+const Storage = new FannyPack('pint-finder')
 const locations = require('./locations.json')
 
 function getClosestPint (userLocation, blacklist) {
@@ -63,7 +65,7 @@ export default class App extends Component {
     this.state = {
       userHeading: 0,
       userLocation: null,
-      visitedVenuesIds: [],
+      visits: null,
     }
   }
 
@@ -81,18 +83,46 @@ export default class App extends Component {
     navigator.geolocation.watchPosition((position) => {
       this.setState({ userLocation: position.coords })
     })
+
+    const iterator = Storage.values({ gte: 'visit.', lt: 'visit/' })
+    const visits = []
+
+    while (true) {
+      const current = await iterator.next()
+      console.log(current)
+      if (current.done) break
+      visits.push(current.value)
+    }
+
+    // for await (const visit of iterator) {
+    //   visits.push(visit.venueId)
+    // }
+
+    this.setState({ visits })
   }
 
-  userDidDrinkPint = () => {
-    const { userLocation, visitedVenuesIds } = this.state
-    const closestLocation = getClosestPint(userLocation, visitedVenuesIds)
-    this.setState({ visitedVenuesIds: [...visitedVenuesIds, closestLocation.id] })
+  userDidDrinkPint = async () => {
+    const { userLocation, visits } = this.state
+    const closestLocation = getClosestPint(userLocation, visits.map(visit => visit.venueId))
+    this.setState({ visits: [...visits, closestLocation.id] })
+
+    const { latitude, longitude } = userLocation
+
+    const date = (new Date()).toISOString()
+    const visit = { date, venueId: closestLocation.id, latitude, longitude }
+
+    await Storage.set(`visit.${date}`, visit)
+  }
+
+  showLocation = () => {
+    const { userLocation } = this.state
+    Alert.alert(`Current location:`, `${userLocation.latitude},${userLocation.longitude}`)
   }
 
   render () {
-    const { userHeading, userLocation, visitedVenuesIds } = this.state
+    const { userHeading, userLocation, visits } = this.state
 
-    if (!userHeading || !userLocation) {
+    if (!userHeading || !userLocation || !visits) {
       return (
         <SafeAreaView style={styles.container}>
           <Spacer height={20} />
@@ -101,7 +131,7 @@ export default class App extends Component {
       )
     }
 
-    const closestLocation = getClosestPint(userLocation, visitedVenuesIds)
+    const closestLocation = getClosestPint(userLocation, visits.map(visit => visit.venueId))
     const pintHeading = geolib.getRhumbLineBearing(userLocation, closestLocation)
     const pintDistance = geolib.getDistanceSimple(userLocation, closestLocation)
 
@@ -133,6 +163,8 @@ export default class App extends Component {
           <Spacer height={20} />
           <Button title="I've had the pint, next!" onPress={this.userDidDrinkPint} />
         </>}
+
+        <Button title='Show location' onPress={this.showLocation} />
       </SafeAreaView>
     )
   }

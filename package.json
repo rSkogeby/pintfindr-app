@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fanny-pack/react-native": "^1.0.0-beta.1",
     "geolib": "^2.0.24",
     "react": "16.6.3",
     "react-native": "0.57.8",

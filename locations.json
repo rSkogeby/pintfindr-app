@@ -14,5 +14,13 @@
     "cheapestBeerPrice": 215,
     "latitude" : 51.7534446716309,
     "longitude" : -1.26211404800415
+  },
+  {
+    "id": "8ad51025-22f7-45c1-a224-2191c6bbd90a",
+    "venueName": "The Chequers",
+    "cheapestBeerName": "Sharp's Doom Bar",
+    "cheapestBeerPrice": 395,
+    "latitude": 51.75185062955272,
+    "longitude": -1.2566331324751074
   }
 ]
