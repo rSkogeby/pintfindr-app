@@ -71,7 +71,7 @@ export default class App extends Component {
     ReactNativeHeading.start(1)
 
     DeviceEventEmitter.addListener('headingUpdated', (data) => {
-      this.setState({ userHeading: data.heading })
+      this.setState({ userHeading: typeof data === 'number' ? data : data.heading })
     })
 
     navigator.geolocation.watchPosition((position) => {
