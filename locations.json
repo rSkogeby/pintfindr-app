@@ -18,9 +18,48 @@
   {
     "id": "8ad51025-22f7-45c1-a224-2191c6bbd90a",
     "venueName": "The Chequers",
-    "cheapestBeerName": "Sharp's Doom Bar",
+    "cheapestBeerName": "Doom Bar",
     "cheapestBeerPrice": 395,
+    "cheapestBeerBrewery": "Sharp's Brewery",
     "latitude": 51.75185062955272,
     "longitude": -1.2566331324751074
+  },
+  {
+    "id": "d1b7d292-46e0-44f0-a41a-ae93aeae126d",
+    "venueName": "The Wheatsheaf",
+    "cheapestBeerName": "Bombardier",
+    "cheapestBeerPrice": 330,
+    "cheapestBeerBrewery": "Eagle Brewery",
+    "latitude": 51.75168123061406,
+    "longitude": -1.2562714011438334
+  },
+  {
+    "id": "db7e73fc-65be-48a0-89aa-703d0f2792ce",
+    "venueName": "Young's The King's Arms",
+    "cheapestBeerName": "Young's Bitter",
+    "cheapestBeerStyle": "Pale Ale",
+    "cheapestBeerPrice": 395,
+    "cheapestBeerBrewery": "Young's",
+    "latitude": 51.7549394182251,
+    "longitude": -1.25437871306325
+  },
+  {
+    "id": "1fb03bc8-750d-43e2-ac23-002ef1733ae5",
+    "venueName": "The Bear",
+    "cheapestBeerName": "London Pride",
+    "cheapestBeerBrewery": "Fuller's Brewery",
+    "cheapestBeerPrice": 440,
+    "cheapestBeerStyle": "Ale",
+    "latitude": 51.7515667,
+    "longitude": -1.2568107
+  },
+  {
+    "id": "06760df5-3aca-457e-b7ee-86c44470593a",
+    "venueName": "The Mad Hatter",
+    "cheapestBeerName": "The Mad Hatter Craft Lager",
+    "cheapestBeerPrice": 415,
+    "cheapestBeerBrewery": "The Mad Hatter",
+    "latitude": 51.748441961973554,
+    "longitude": -1.242497221890595
   }
 ]

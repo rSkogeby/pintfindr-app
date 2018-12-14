@@ -3,12 +3,20 @@ import {AsyncStorage, Alert, ActivityIndicator, Button, Platform, PermissionsAnd
 import ReactNativeHeading from 'react-native-heading'
 import geolib from 'geolib'
 import Spacer from 'react-spacer'
-import FannyPack from '@fanny-pack/react-native'
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 
 import Compass from './components/compass'
+import HistoryScreen from './components/history'
+import SettingsScreen from './components/settings'
+import MapScreen from './components/map'
 
-const Storage = new FannyPack('pint-finder')
+import Storage from './lib/storage'
+
 const locations = require('./locations.json')
+
+const TabBarBookmark = require('./assets/TabBar_Bookmark.png')
+const TabBarMore = require('./assets/TabBar_More.png')
+const TabBarFeatured = require('./assets/TabBar_Featured.png')
 
 function getClosestPint (userLocation, blacklist) {
   let shortestDistance = Infinity
@@ -58,7 +66,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default class App extends Component {
+class HomeScreen extends Component {
   constructor (props) {
     super(props)
 
@@ -66,6 +74,7 @@ export default class App extends Component {
       userHeading: 0,
       userLocation: null,
       visits: null,
+      showHistory: false,
     }
   }
 
@@ -120,7 +129,7 @@ export default class App extends Component {
   }
 
   render () {
-    const { userHeading, userLocation, visits } = this.state
+    const { userHeading, userLocation, visits, showHistory } = this.state
 
     if (!userHeading || !userLocation || !visits) {
       return (
@@ -169,3 +178,28 @@ export default class App extends Component {
     )
   }
 }
+
+const AppNavigator = createBottomTabNavigator(
+  {
+    History: {
+      tabBarIcon: <Image source={TabBarBookmark} />,
+      screen: HistoryScreen,
+    },
+    Home: {
+      tabBarIcon: <Image source={TabBarMore} />,
+      screen: HomeScreen,
+    },
+    Map: {
+      screen: MapScreen,
+    },
+    Settings: {
+      tabBarIcon: <Image source={TabBarFeatured} />,
+      screen: SettingsScreen,
+    },
+  },
+  {
+    initialRouteName: 'Home'
+  }
+)
+
+export default createAppContainer(AppNavigator)
