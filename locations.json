@@ -54,6 +54,15 @@
     "longitude": -1.2568107
   },
   {
+    "id": "cc55b19a-48dc-4229-9c86-633a96d645f7",
+    "venueName": "The Cape of Good Hope",
+    "cheapestBeerName": "Pravha",
+    "cheapestBeerPrice": 405,
+    "cheapestBeerBrewery": "Molson Coors Brewing Company",
+    "latitude": 51.7497305,
+    "longitude": -1.243865
+  }
+  {
     "id": "06760df5-3aca-457e-b7ee-86c44470593a",
     "venueName": "The Mad Hatter",
     "cheapestBeerName": "The Mad Hatter Craft Lager",
