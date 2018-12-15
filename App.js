@@ -89,7 +89,7 @@ class HomeScreen extends Component {
     if (Platform.OS === 'android') {
       await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
     }
-
+    
     ReactNativeHeading.start(1)
 
     DeviceEventEmitter.addListener('headingUpdated', (data) => {
