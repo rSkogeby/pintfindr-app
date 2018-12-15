@@ -1,3 +1,4 @@
+// Import libraries
 import React, {Component} from 'react'
 import {AsyncStorage, Alert, ActivityIndicator, Button, Platform, PermissionsAndroid, SafeAreaView, StyleSheet, DeviceEventEmitter, Text, View, Image} from 'react-native'
 import ReactNativeHeading from 'react-native-heading'
@@ -5,6 +6,7 @@ import geolib from 'geolib'
 import Spacer from 'react-spacer'
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 
+// Import image components
 import Compass from './components/compass'
 import HistoryScreen from './components/history'
 import SettingsScreen from './components/settings'
@@ -12,12 +14,15 @@ import MapScreen from './components/map'
 
 import Storage from './lib/storage'
 
+// Pub locations
 const locations = require('./locations.json')
 
+// 
 const TabBarBookmark = require('./assets/TabBar_Bookmark.png')
 const TabBarMore = require('./assets/TabBar_More.png')
 const TabBarFeatured = require('./assets/TabBar_Featured.png')
 
+// Gets object of closest venue that have not been visited
 function getClosestPint (userLocation, blacklist) {
   let shortestDistance = Infinity
   let nearestLocation = null
@@ -36,6 +41,7 @@ function getClosestPint (userLocation, blacklist) {
   return nearestLocation
 }
 
+// Layout and formatting
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,6 +72,7 @@ const styles = StyleSheet.create({
   },
 })
 
+// Home Screen class
 class HomeScreen extends Component {
   constructor (props) {
     super(props)
@@ -77,7 +84,7 @@ class HomeScreen extends Component {
       showHistory: false,
     }
   }
-
+  // Home screen: 
   async componentDidMount () {
     if (Platform.OS === 'android') {
       await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
