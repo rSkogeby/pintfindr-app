@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
 })
 
-// Home Screen class
+// HomeScreen class
 class HomeScreen extends Component {
   constructor (props) {
     super(props)
@@ -84,7 +84,7 @@ class HomeScreen extends Component {
       showHistory: false,
     }
   }
-  // Home screen: 
+  // HomeScreen class: initialize values on home screen 
   async componentDidMount () {
     if (Platform.OS === 'android') {
       await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
@@ -92,14 +92,17 @@ class HomeScreen extends Component {
     
     ReactNativeHeading.start(1)
 
+    // HomeScreen class init: Direction of next location
     DeviceEventEmitter.addListener('headingUpdated', (data) => {
       this.setState({ userHeading: typeof data === 'number' ? data : data.heading })
     })
 
+    // HomeScreen class init: Current position
     navigator.geolocation.watchPosition((position) => {
       this.setState({ userLocation: position.coords })
     })
 
+    // HomeScreen class init: 
     const iterator = Storage.values({ gte: 'visit.', lt: 'visit/' })
     const visits = []
 
@@ -186,6 +189,7 @@ class HomeScreen extends Component {
   }
 }
 
+// Creates bottom navigation bar for iPhone
 const AppNavigator = createBottomTabNavigator(
   {
     History: {
@@ -208,5 +212,14 @@ const AppNavigator = createBottomTabNavigator(
     initialRouteName: 'Home'
   }
 )
+// Swipe-up / drag-down settings menu:
+/*  1. Settings
+    2. About the app
+    3. History
+*/ 
+
+// Idea: access screens by swiping instead, e.g. map swipe right, awards swipe left
+
+
 
 export default createAppContainer(AppNavigator)
