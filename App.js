@@ -242,6 +242,8 @@ e.g. map swipe right, awards swipe left
     Generate random UUID with uuidv4()
 
 */    
+
+
 userAddCurrentLocation = async () => {
   
   // Implement form
@@ -253,7 +255,7 @@ userAddCurrentLocation = async () => {
   const { userLocation } = this.state
 
   // Save entries to dict
-  locations_entry = [{
+  locations_entry = {
     "id": uuidv4(),
     "venueName": venueName,
     "cheapestBeerName": cheapesterBeerName,
@@ -262,7 +264,17 @@ userAddCurrentLocation = async () => {
     "cheapestBeerBrewery": cheapestBeerBrewery,
     "latitude": userLocation.latitude,
     "longitude": userLocation.longitude
-  }]
+  }
+
+  /* Push locations_entry to locations.json on server
+  */
+  locations_database = []
+  locations_database.push(locations_entry)
+
+  // For debugging
+  console.log(locations_database)
+
+
 }
   /*
   const { userLocation, visits } = this.state
