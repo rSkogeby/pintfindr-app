@@ -189,7 +189,7 @@ class HomeScreen extends Component {
   }
 }
 
-// Creates bottom navigation bar for iPhone
+/*Creates bottom navigation bar for iPhone*/
 const AppNavigator = createBottomTabNavigator(
   {
     History: {
@@ -212,13 +212,17 @@ const AppNavigator = createBottomTabNavigator(
     initialRouteName: 'Home'
   }
 )
+
+// Disable warnings in app
+console.disableYellowBox = true;
+
 // Swipe-up / drag-down settings menu:
 /*  1. Settings
     2. About the app
     3. History
 */ 
 
-// Idea: access screens by swiping instead, e.g. map swipe right, awards swipe left
+/* Idea: access screens by swiping instead, e.g. map swipe right, awards swipe left */
 
 
 
