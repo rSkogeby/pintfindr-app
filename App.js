@@ -16,6 +16,7 @@ import Storage from './lib/storage'
 
 // Pub locations
 const locations = require('./locations.json')
+const uuidv1 = require('uuid/v1')
 
 // 
 const TabBarBookmark = require('./assets/TabBar_Bookmark.png')
@@ -222,8 +223,22 @@ console.disableYellowBox = true;
     3. History
 */ 
 
-/* Idea: access screens by swiping instead, e.g. map swipe right, awards swipe left */
+/* Idea: access screens by swiping instead, 
+e.g. map swipe right, awards swipe left 
+*/
 
+/* Allow user to add location to JSON file
+   "id": "db7e73fc-65be-48a0-89aa-703d0f2792ce",
+    "venueName": "Young's The King's Arms",
+    "cheapestBeerName": "Young's Bitter",
+    "cheapestBeerStyle": "Pale Ale",
+    "cheapestBeerPrice": 395,
+    "cheapestBeerBrewery": "Young's",
+    "latitude": 51.7549394182251,
+    "longitude": -1.25437871306325
+
+    Generate UUID with uuidv1(): outputs string to console
+*/    
 
 
 export default createAppContainer(AppNavigator)
