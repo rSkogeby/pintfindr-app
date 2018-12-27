@@ -16,8 +16,8 @@ import Storage from './lib/storage'
 
 // Pub locations
 const locations = require('./locations.json')
-const uuidv1 = require('uuid/v1') // Timestamp
-const uuidv4 = require('uuid/v4') // Random
+const uuidv1 = require('uuid/v1') // Timestamp UUID (v1)
+const uuidv4 = require('uuid/v4') // Random UUID (v4)
 
 // 
 const TabBarBookmark = require('./assets/TabBar_Bookmark.png')
@@ -242,6 +242,40 @@ e.g. map swipe right, awards swipe left
     Generate random UUID with uuidv4()
 
 */    
+userAddCurrentLocation = async () => {
+  
+  // Implement form
+  const venueName = 'Do venue'
+  const cheapesterBeerName = 'Do beer name'
+  const cheapestBeerStyle = 'Do beer style'
+  const cheapestBeerPrice = 395
+  const cheapestBeerBrewery = 'Do brewery'
+  const { userLocation } = this.state
 
+  // Save entries to dict
+  locations_entry = [{
+    "id": uuidv4(),
+    "venueName": venueName,
+    "cheapestBeerName": cheapesterBeerName,
+    "cheapestBeerStyle": cheapestBeerStyle,
+    "cheapestBeerPrice": cheapestBeerPrice,
+    "cheapestBeerBrewery": cheapestBeerBrewery,
+    "latitude": userLocation.latitude,
+    "longitude": userLocation.longitude
+  }]
+}
+  /*
+  const { userLocation, visits } = this.state
+  const closestLocation = getClosestPint(userLocation, visits.map(visit => visit.venueId))
+  this.setState({ visits: [...visits, closestLocation.id] })
+
+  const { latitude, longitude } = userLocation
+
+  const date = (new Date()).toISOString()
+  const visit = { date, venueId: closestLocation.id, latitude, longitude }
+
+  await Storage.set(`visit.${date}`, visit)
+
+/*
 
 export default createAppContainer(AppNavigator)
