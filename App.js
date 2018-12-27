@@ -16,7 +16,8 @@ import Storage from './lib/storage'
 
 // Pub locations
 const locations = require('./locations.json')
-const uuidv1 = require('uuid/v1')
+const uuidv1 = require('uuid/v1') // Timestamp
+const uuidv4 = require('uuid/v4') // Random
 
 // 
 const TabBarBookmark = require('./assets/TabBar_Bookmark.png')
@@ -237,7 +238,9 @@ e.g. map swipe right, awards swipe left
     "latitude": 51.7549394182251,
     "longitude": -1.25437871306325
 
-    Generate UUID with uuidv1(): outputs string to console
+    Generate timestamp dependant UUID with uuidv1(): outputs string to console
+    Generate random UUID with uuidv4()
+
 */    
 
 
