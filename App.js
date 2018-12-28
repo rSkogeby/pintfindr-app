@@ -276,8 +276,7 @@ userAddCurrentLocation = async () => {
 
 
 }
-  /*
-  const { userLocation, visits } = this.state
+  /* const { userLocation, visits } = this.state
   const closestLocation = getClosestPint(userLocation, visits.map(visit => visit.venueId))
   this.setState({ visits: [...visits, closestLocation.id] })
 
@@ -287,7 +286,6 @@ userAddCurrentLocation = async () => {
   const visit = { date, venueId: closestLocation.id, latitude, longitude }
 
   await Storage.set(`visit.${date}`, visit)
-
-/*
+*/
 
 export default createAppContainer(AppNavigator)
