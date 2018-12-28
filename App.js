@@ -13,6 +13,8 @@ import SettingsScreen from './components/settings'
 import MapScreen from './components/map'
 
 import Storage from './lib/storage'
+import styles from './styles'
+
 
 // Pub locations
 const locations = require('./locations.json')
@@ -44,7 +46,7 @@ function getClosestPint (userLocation, blacklist) {
 }
 
 // Layout and formatting
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 })
-
+*/
 // HomeScreen class
 class HomeScreen extends Component {
   constructor (props) {
