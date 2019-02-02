@@ -23,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       initialValue: 'alucard@gmail.com',
+      style: TextStyle(
+        color: Colors.white,
+      ),
       decoration: InputDecoration(
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -34,6 +37,9 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       initialValue: 'some password',
       obscureText: true,
+      style: TextStyle(
+        color: Colors.white,
+      ),
       decoration: InputDecoration(
         hintText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -59,13 +65,13 @@ class _LoginPageState extends State<LoginPage> {
     final forgotLabel = FlatButton(
       child: Text(
         'Forgot password?',
-        style: TextStyle(color: Colors.black54),
+        style: TextStyle(color: Colors.white),
       ),
       onPressed: () {},
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Center(
         child: ListView(
           shrinkWrap: true,
