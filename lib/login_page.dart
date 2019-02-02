@@ -1,5 +1,18 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import 'config.dart';
 import 'home_page.dart';
+
+Future<http.Response> postJson(String url, Object data) async {
+  var body = jsonEncode(data);
+  var headers = {"Content-Type": "application/json"};
+
+  return http.post('$API_HOST/session', headers: headers, body: body);
+}
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -8,8 +21,35 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  var loading = false;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (this.loading) {
+      return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          children: <Widget>[
+            CupertinoActivityIndicator()
+          ],
+        ),
+      ),
+    );
+    }
+
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
@@ -22,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'alucard@gmail.com',
+      controller: this.emailController,
       style: TextStyle(
         color: Colors.white,
       ),
@@ -35,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: 'some password',
+      controller: this.passwordController,
       obscureText: true,
       style: TextStyle(
         color: Colors.white,
@@ -53,8 +93,29 @@ class _LoginPageState extends State<LoginPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        onPressed: () {
-          Navigator.of(context).pushNamed(HomePage.tag);
+        onPressed: () async {
+          setState(() {
+            this.loading = true;
+          });
+
+          var response = await postJson('$API_HOST/session', {"email": this.emailController.text, "password": this.passwordController.text});
+
+          if (response.statusCode == 200) {
+            Navigator.of(context).pushNamed(HomePage.tag);
+          } else {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: new Text('Failed to log in')
+                );
+              }
+            );
+          }
+
+          setState(() {
+            this.loading = false;
+          });
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
