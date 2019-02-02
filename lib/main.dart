@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
         fontFamily: 'Nunito',
+        hintColor: Colors.white
       ),
       home: LoginPage(),
       routes: routes,
