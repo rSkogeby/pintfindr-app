@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
           });
         },
         padding: EdgeInsets.all(12),
-        color: Colors.lightBlueAccent,
+        color: Colors.orangeAccent,
         child: Text('Log In', style: TextStyle(color: Colors.white)),
       ),
     );
