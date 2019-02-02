@@ -36,6 +36,15 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final banner = Hero(
+      tag: 'hero',
+      child: CircleAvatar(
+        backgroundColor: Colors.transparent,
+        radius: 48.0,
+        child: Image.asset('assets/logo_title_slogan.png'),
+      ),
+    );
+
     if (this.loading) {
       return Scaffold(
       backgroundColor: Colors.black,
@@ -44,6 +53,8 @@ class _LoginPageState extends State<LoginPage> {
           shrinkWrap: true,
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
+            banner,
+            SizedBox(height: 88.0),
             CupertinoActivityIndicator()
           ],
         ),
