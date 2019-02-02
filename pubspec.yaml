@@ -15,7 +15,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
-    - assets/alucard.jpg
+    - assets/profilepic.jpg
     - assets/profile pic.jpg
     - assets/logo_title_slogan.png
     - assets/logo_title.png
