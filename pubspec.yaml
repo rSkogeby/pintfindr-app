@@ -15,6 +15,12 @@ flutter:
   assets:
     - assets/logo.png
     - assets/alucard.jpg
+    - assets/profile pic.jpg
+    - assets/logo_title_slogan.png
+    - assets/logo_title.png
+    - assets/icon.png
+    - assets/brand_slogan.png
+    - assets/slogan.png
   fonts:
       - family: Nunito
         fonts:
