@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         child: CircleAvatar(
           radius: 72.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/alucard.jpg'),
+          backgroundImage: AssetImage('assets/profilepic.jpg'),
         ),
       ),
     );
