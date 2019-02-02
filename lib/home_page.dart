@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'global_mutable_state.dart';
+
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
 
@@ -20,7 +22,7 @@ class HomePage extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        'Welcome Alucard',
+        'Welcome $globalHandle',
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );

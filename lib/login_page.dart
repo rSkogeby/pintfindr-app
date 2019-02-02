@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'config.dart';
 import 'home_page.dart';
+import 'global_mutable_state.dart';
 
 Future<http.Response> postJson(String url, Object data) async {
   var body = jsonEncode(data);
@@ -101,6 +102,9 @@ class _LoginPageState extends State<LoginPage> {
           var response = await postJson('$API_HOST/session', {"email": this.emailController.text, "password": this.passwordController.text});
 
           if (response.statusCode == 200) {
+            final body = json.decode(response.body);
+            globalToken = body['token'];
+            globalHandle = body['handle'];
             Navigator.of(context).pushNamed(HomePage.tag);
           } else {
             showDialog(
