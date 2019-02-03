@@ -40,8 +40,8 @@ class HomePage extends StatelessWidget {
       padding: EdgeInsets.all(28.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
-          Colors.blue,
-          Colors.lightBlueAccent,
+          Colors.orange,
+          Colors.orangeAccent,
         ]),
       ),
       child: Column(
