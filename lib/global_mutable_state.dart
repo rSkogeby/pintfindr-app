@@ -1,0 +1,2 @@
+String globalToken;
+String globalHandle;
