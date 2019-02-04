@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
           Colors.orange,
-          Colors.orangeAccent,
+          Colors.white24,
         ]),
       ),
       child: Column(
