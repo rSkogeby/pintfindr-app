@@ -1,19 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-import 'config.dart';
-import 'home_page.dart';
-import 'global_mutable_state.dart';
-
-Future<http.Response> postJson(String url, Object data) async {
-  var body = jsonEncode(data);
-  var headers = {"Content-Type": "application/json"};
-
-  return http.post('$API_HOST/session', headers: headers, body: body);
-}
+import 'stores/auth.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -102,19 +90,11 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () async {
-          setState(() {
-            this.loading = true;
-          });
+          setState(() => this.loading = true);
 
-          var response = await postJson('$API_HOST/session', {"email": this.emailController.text, "password": this.passwordController.text});
-
-          if (response.statusCode == 200) {
-            final body = json.decode(response.body);
-            globalEmail = this.emailController.text;
-            globalHandle = body['handle'];
-            globalToken = body['token'];
-            Navigator.of(context).pushNamed(HomePage.tag);
-          } else {
+          try {
+            await auth.login(this.emailController.text, this.passwordController.text);
+          } catch (_) {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -122,9 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 });
           }
 
-          setState(() {
-            this.loading = false;
-          });
+          if (mounted) setState(() => this.loading = false);
         },
         padding: EdgeInsets.all(12),
         color: Colors.orangeAccent,

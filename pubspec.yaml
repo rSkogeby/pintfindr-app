@@ -5,6 +5,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.0
+  flutter_observable: ^0.1.0
   http: ^0.12.0+1
   simple_gravatar: ^1.0.5
 

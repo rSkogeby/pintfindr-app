@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:simple_gravatar/simple_gravatar.dart' show Gravatar;
 
-import 'global_mutable_state.dart';
+import 'stores/auth.dart';
 
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
 
   @override
   Widget build(BuildContext context) {
-    final gravatar = Gravatar(globalEmail);
+    final gravatar = Gravatar(auth.current.value.email);
 
     final alucard = Hero(
       tag: 'hero',
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        'Welcome $globalHandle',
+        'Welcome ${auth.current.value.handle}',
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
