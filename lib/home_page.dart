@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_gravatar/simple_gravatar.dart' show Gravatar;
 
 import 'global_mutable_state.dart';
 
@@ -7,6 +8,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gravatar = Gravatar(globalEmail);
+
     final alucard = Hero(
       tag: 'hero',
       child: Padding(
@@ -14,7 +17,7 @@ class HomePage extends StatelessWidget {
         child: CircleAvatar(
           radius: 72.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/profilepic.jpg'),
+          backgroundImage: NetworkImage(gravatar.imageUrl()),
         ),
       ),
     );

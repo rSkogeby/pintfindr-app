@@ -1,2 +1,3 @@
-String globalToken;
+String globalEmail;
 String globalHandle;
+String globalToken;

@@ -47,19 +47,15 @@ class _LoginPageState extends State<LoginPage> {
 
     if (this.loading) {
       return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[
-            banner,
-            SizedBox(height: 88.0),
-            CupertinoActivityIndicator()
-          ],
+        backgroundColor: Colors.black,
+        body: Center(
+          child: ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            children: <Widget>[banner, SizedBox(height: 88.0), CupertinoActivityIndicator()],
+          ),
         ),
-      ),
-    );
+      );
     }
 
     final logo = Hero(
@@ -114,18 +110,16 @@ class _LoginPageState extends State<LoginPage> {
 
           if (response.statusCode == 200) {
             final body = json.decode(response.body);
-            globalToken = body['token'];
+            globalEmail = this.emailController.text;
             globalHandle = body['handle'];
+            globalToken = body['token'];
             Navigator.of(context).pushNamed(HomePage.tag);
           } else {
             showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: new Text('Failed to log in')
-                );
-              }
-            );
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(title: new Text('Failed to log in'));
+                });
           }
 
           setState(() {
@@ -160,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
             password,
             SizedBox(height: 24.0),
             loginButton,
-            forgotLabel
+            forgotLabel,
           ],
         ),
       ),
