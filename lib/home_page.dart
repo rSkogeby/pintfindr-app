@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
         child: CircleAvatar(
           radius: 72.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(gravatar.imageUrl()),
+          backgroundImage: NetworkImage(gravatar.imageUrl(size: 320)),
         ),
       ),
     );
