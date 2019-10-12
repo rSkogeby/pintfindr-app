@@ -8,6 +8,7 @@ dependencies:
   flutter_observable: ^0.1.0
   http: ^0.12.0+1
   simple_gravatar: ^1.0.5
+  flutter_maps: ^0.1.0
 
 dev_dependencies:
   flutter_test:
