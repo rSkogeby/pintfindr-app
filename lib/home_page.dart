@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './pages/map.dart';
 import './pages/profile.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,10 +19,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         body = ProfilePage();
         break;
-      case 1:
-        body = MapPage();
-        break;
-    }
+      }
 
     return Scaffold(
       body: body,
