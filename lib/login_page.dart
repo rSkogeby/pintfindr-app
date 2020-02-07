@@ -48,12 +48,22 @@ class _LoginPageState extends State<LoginPage> {
 
     final logo = Hero(
       tag: 'hero',
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        radius: 48.0,
-        child: Image.asset('assets/icon.png'),
-      ),
+      child: Center(
+        child: new Container(
+            width: 150.0,
+            height: 150.0,
+            decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                image: new DecorationImage(
+                    fit: BoxFit.cover,
+                    image: new AssetImage(
+                        "assets/icon.png")
+                ),
+              ),
+            ),
+        ),
     );
+
 
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
@@ -119,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: ListView(
           shrinkWrap: true,
