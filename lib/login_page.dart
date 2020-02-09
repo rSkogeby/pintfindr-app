@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'stores/auth.dart';
+import 'login_button.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -93,15 +94,9 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    final loginButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        onPressed: () async {
+    final loginButton = LoginButton(
+      loginPressed: () async {
           setState(() => this.loading = true);
-
           try {
             await auth.login(this.emailController.text, this.passwordController.text);
           } catch (_) {
@@ -114,18 +109,9 @@ class _LoginPageState extends State<LoginPage> {
 
           if (mounted) setState(() => this.loading = false);
         },
-        padding: EdgeInsets.all(12),
-        color: Colors.orangeAccent,
-        child: Text(
-          'Log In',
-          style: TextStyle(
-            color: Colors.white,
-            letterSpacing: 2.0,
-          )
-        ),
-      ),
+      buttonColor: Colors.orangeAccent,
+      buttonString: 'Log In',
     );
-
     final forgotLabel = FlatButton(
       child: Text(
         'Forgot password?',
