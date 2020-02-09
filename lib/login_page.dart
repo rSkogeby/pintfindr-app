@@ -116,14 +116,23 @@ class _LoginPageState extends State<LoginPage> {
         },
         padding: EdgeInsets.all(12),
         color: Colors.orangeAccent,
-        child: Text('Log In', style: TextStyle(color: Colors.white)),
+        child: Text(
+          'Log In',
+          style: TextStyle(
+            color: Colors.white,
+            letterSpacing: 2.0,
+          )
+        ),
       ),
     );
 
     final forgotLabel = FlatButton(
       child: Text(
         'Forgot password?',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(
+          color: Colors.black,
+          letterSpacing: 2.0,
+        ),
       ),
       onPressed: () {},
     );
