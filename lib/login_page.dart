@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 import 'stores/auth.dart';
 import 'login_button.dart';
@@ -106,12 +108,23 @@ class _LoginPageState extends State<LoginPage> {
                   return AlertDialog(title: new Text('Failed to log in'));
                 });
           }
-
           if (mounted) setState(() => this.loading = false);
         },
       buttonColor: Colors.orangeAccent,
       buttonString: 'Log In',
+      buttonIcon: FontAwesomeIcons.signInAlt,
+      iconColor: Colors.white
     );
+
+  final facebookButton = LoginButton(
+    buttonColor: Colors.blue[800],
+    buttonString: 'Continue with Facebook',
+    buttonIcon: FontAwesomeIcons.facebookF,
+    iconColor: Colors.white,
+    loginPressed: () {},
+  );
+
+
     final forgotLabel = FlatButton(
       child: Text(
         'Forgot password?',
@@ -137,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
             password,
             SizedBox(height: 24.0),
             loginButton,
+            facebookButton,
             forgotLabel,
           ],
         ),
