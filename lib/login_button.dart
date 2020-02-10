@@ -19,7 +19,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 0.0),
       child: RaisedButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),

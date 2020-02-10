@@ -116,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
       iconColor: Colors.white
     );
 
+  // TODO: Implement Facebook Login
   final facebookButton = LoginButton(
     buttonColor: Colors.blue[800],
     buttonString: 'Continue with Facebook',
@@ -124,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
     loginPressed: () {},
   );
 
+  // TODO: Implement Github Login
   final githubButton = LoginButton(
     buttonColor: Colors.black,
     buttonString: 'Sign in with Github',
@@ -132,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
     loginPressed: () {},
   );
 
+  // TODO: Implement Twitter Login
   final twitterButton = LoginButton(
     buttonColor: Colors.blue[400],
     buttonString: 'Sign in with Twitter',
@@ -139,16 +142,6 @@ class _LoginPageState extends State<LoginPage> {
     iconColor: Colors.white,
     loginPressed: () {},
   );
-
-
-    final socialMediaButtons = Column(
-
-      children: <Widget> [
-        facebookButton,
-        githubButton,
-        twitterButton
-      ]
-    );
 
     final forgotLabel = FlatButton(
       child: Text(
