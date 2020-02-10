@@ -124,6 +124,31 @@ class _LoginPageState extends State<LoginPage> {
     loginPressed: () {},
   );
 
+  final githubButton = LoginButton(
+    buttonColor: Colors.black,
+    buttonString: 'Sign in with Github',
+    buttonIcon: FontAwesomeIcons.github,
+    iconColor: Colors.white,
+    loginPressed: () {},
+  );
+
+  final twitterButton = LoginButton(
+    buttonColor: Colors.blue[400],
+    buttonString: 'Sign in with Twitter',
+    buttonIcon: FontAwesomeIcons.twitter,
+    iconColor: Colors.white,
+    loginPressed: () {},
+  );
+
+
+    final socialMediaButtons = Column(
+
+      children: <Widget> [
+        facebookButton,
+        githubButton,
+        twitterButton
+      ]
+    );
 
     final forgotLabel = FlatButton(
       child: Text(
@@ -150,8 +175,14 @@ class _LoginPageState extends State<LoginPage> {
             password,
             SizedBox(height: 24.0),
             loginButton,
-            facebookButton,
+            SizedBox(height: 12.0),
             forgotLabel,
+            SizedBox(height: 32.0),
+            facebookButton,
+            SizedBox(height: 8.0),
+            twitterButton,
+            SizedBox(height: 8.0),
+            githubButton,
           ],
         ),
       ),
